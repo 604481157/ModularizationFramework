@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="app.zhixin.com.process">
+          package="com.zhixin.com.process">
 
     <application
         android:allowBackup="true"
         android:supportsRtl="true"
         >
         <activity
-            android:name="app.zhixin.com.process.com.zhixin.com.process.ProcessActivity"
+            android:name=".ProcessActivity"
             android:process=":process"/>
         <service
-            android:name="app.zhixin.com.process.com.zhixin.com.process.ProcessLocalRouterService"
+            android:name=".ProcessLocalRouterService"
             android:process=":process"/>
     </application>
 </manifest>

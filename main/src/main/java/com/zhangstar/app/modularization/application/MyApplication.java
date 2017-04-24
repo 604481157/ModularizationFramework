@@ -19,13 +19,13 @@ import com.zhixin.com.process.ProcessLocalRouterService;
 public class MyApplication extends BaseApplication {
     @Override
     protected void registerAllProcessService() {
-        WideRouter.registerLocalRouter("com.zhixin.app.modularization", MainLocalRouterService.class);
+        WideRouter.registerLocalRouter("com.zhangstar.app.modularization", MainLocalRouterService.class);
         WideRouter.registerLocalRouter(ProcessLocalRouterService.PROCESS_NAME, ProcessLocalRouterService.class);
     }
 
     @Override
     protected void registerApplicationLogics() {
-        registerApplicationLogic("com.zhixin.app.modularization", 100, MainApplicationLogic.class);
+        registerApplicationLogic("com.zhangstar.app.modularization", 100, MainApplicationLogic.class);
         registerApplicationLogic(ProcessLocalRouterService.PROCESS_NAME, 99, ProcessApplicationLogic.class);
     }
 

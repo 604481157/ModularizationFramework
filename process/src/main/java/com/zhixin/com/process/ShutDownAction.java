@@ -21,7 +21,17 @@ public class ShutDownAction extends BaseAction {
     @Override
     public ActionResult invoke(Context context, RouterRequest requestData) {
         LocalRouter.getInstance(BaseApplication.getInstance()).stopMyself(ProcessLocalRouterService.class);
-        System.exit(0);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.exit(0);
+            }
+        }).start();
         return new ActionResult(context, ActionResult.ACTION_SUCCESSED, "关闭此进程成功");
     }
 

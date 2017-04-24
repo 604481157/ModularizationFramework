@@ -12,5 +12,5 @@ import com.zhangstar.app.common.manyprocess.router.LocalRouterConnectService;
  */
 
 public class ProcessLocalRouterService extends LocalRouterConnectService {
-    public static final String PROCESS_NAME = "com.zhixin.app.modularization:process";
+    public static final String PROCESS_NAME = "ccom.zhangstar.app.modularization:process";
 }

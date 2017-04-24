@@ -11,8 +11,8 @@ import com.zhangstar.app.common.RouterRequest;
 import com.zhangstar.app.common.manyprocess.application.BaseApplication;
 import com.zhangstar.app.common.manyprocess.router.LocalRouter;
 import com.zhangstar.app.common.manyprocess.tools.LogUtil;
-
 import com.zhixin.com.process.ProcessLocalRouterService;
+
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,11 +65,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    ActionResult result = LocalRouter.getInstance(BaseApplication.getInstance()).route(MainActivity.this, RouterRequest.obtain(MainActivity.this)
+                    LocalRouter.getInstance(BaseApplication.getInstance()).rxRoute(MainActivity.this, RouterRequest.obtain(MainActivity.this)
                             .processName(ProcessLocalRouterService.PROCESS_NAME)
                             .provider("process")
-                            .action("shutdown"));
-                    Toast.makeText(MainActivity.this, result.isActionAsync + "", Toast.LENGTH_SHORT).show();
+                            .action("shutdown")).subscribe(new Consumer<ActionResult>() {
+                        @Override
+                        public void accept(ActionResult actionResult) throws Exception {
+                            Toast.makeText(MainActivity.this, actionResult.getMsg(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
