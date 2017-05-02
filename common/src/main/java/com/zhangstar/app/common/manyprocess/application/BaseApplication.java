@@ -1,5 +1,6 @@
 package com.zhangstar.app.common.manyprocess.application;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -29,6 +30,7 @@ public abstract class BaseApplication extends Application {
     private static BaseApplication instance;
     private HashMap<String, List<PriorityLogicWrapper>> mLogicClassMap;
     private List<PriorityLogicWrapper> logicList;
+    private List<Activity> activitys = new ArrayList<Activity>();
 
     @Override
 
@@ -138,5 +140,23 @@ public abstract class BaseApplication extends Application {
 
     public static BaseApplication getInstance() {
         return instance;
+    }
+
+    // 添加Activity到容器中
+    public void addActivity(Activity activity) {
+        if (activitys != null) {
+            if (!activitys.contains(activity)) {
+                activitys.add(activity);
+            }
+        }
+    }
+
+    // 遍历所有Activity并finish
+    public void exit() {
+        if (activitys != null && activitys.size() > 0) {
+            for (Activity activity : activitys) {
+                activity.finish();
+            }
+        }
     }
 }

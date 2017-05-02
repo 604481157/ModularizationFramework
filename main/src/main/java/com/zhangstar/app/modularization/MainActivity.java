@@ -13,6 +13,7 @@ import com.zhangstar.app.common.manyprocess.router.LocalRouter;
 import com.zhangstar.app.common.manyprocess.tools.LogUtil;
 import com.zhixin.com.process.ProcessLocalRouterService;
 
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    LocalRouter.getInstance(BaseApplication.getInstance()).rxRoute(MainActivity.this, RouterRequest.obtain(MainActivity.this)
+                    Disposable a = LocalRouter.getInstance(BaseApplication.getInstance()).rxRoute(MainActivity.this, RouterRequest.obtain(MainActivity.this)
                             .provider("main")
                             .action("main"))
                             .subscribe(new Consumer<ActionResult>() {
